@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- 計算機內容 -->
+    <div>
+        <table>
+            <tr>
+                <th colspan="4" class="result"><input id="output" class="box"></th>
+
+            </tr>
+            <tr>
+                <th><button onclick="numBtn('9')" class="num">9</button> </th>
+                <th><button onclick="numBtn('8')" class="num">8</button> </th>
+                <th><button onclick="numBtn('7')" class="num">7</button> </th>
+                <th><button onclick="operBtn('÷')" class="operator">÷</button> </th>
+
+
+            </tr>
+            <tr>
+                <th><button onclick="numBtn('4')" class="num">4</button> </th>
+                <th><button onclick="numBtn('5')" class="num">5</button> </th>
+                <th><button onclick="numBtn('6')" class="num">6</button> </th>
+                <th><button onclick="operBtn('*')" class="operator">*</button> </th>
+
+
+
+            </tr>
+            <tr>
+                <th><button onclick="numBtn('1')" class="num">1</button> </th>
+                <th><button onclick="numBtn('2')" class="num">2</button> </th>
+                <th><button onclick="numBtn('3')" class="num">3</button> </th>
+                <th><button onclick="operBtn('+')" class="operator">+</button> </th>
+
+            </tr>
+            <tr>
+                <th><button onclick="Btn('AC')" class="operator2">AC</button> </th>
+                <th><button onclick="numBtn('0')" class="num">0</button> </th>
+                <th><button onclick="equal('=')" class="operator">=</button> </th>
+                <th><button onclick="operBtn('-')" class="operator">-</button> </th>
+
+
+            </tr>
+
+        </table>
+        <!-- 計算機Javascript -->
+        <script>
+            var temp = 0; //暫存被運算數
+
+            var strOper = 0; //暫存運算符號
+
+            var valueM = 0; // AC 暫存使用
+
+
+            //數字鍵
+
+            function numBtn(str) {
+
+                if (document.getElementById("output").value == 0) {
+                    document.getElementById("output").value = str;
+                } else {
+                    document.getElementById("output").value += str;
+                }
+            }
+
+
+            //運算符號
+
+            function operBtn(str) {
+
+                //不按等號的連續運算
+
+                equal();
+
+                valueA = document.getElementById("output").value;
+                strOper = str;
+
+                document.getElementById("output").value = 0;
+            }
+
+            //等於
+
+            function equal() {
+
+                switch (strOper) {
+                    case '+':
+                        document.getElementById("output").value = parseFloat(valueA) + parseFloat(document.getElementById("output").value);
+                        break;
+                    case '-':
+                        document.getElementById("output").value = parseFloat(valueA) - parseFloat(document.getElementById("output").value);
+                        break;
+                    case '*':
+                        document.getElementById("output").value = parseFloat(valueA) * parseFloat(document.getElementById("output").value);
+                        break;
+                    case '÷':
+                        document.getElementById("output").value = parseFloat(valueA) / parseFloat(document.getElementById("output").value);
+                        break;
+                    default:
+                        break;
+                }
+
+
+
+            }
+
+            //M鍵
+
+            function Btn(str) {
+
+                switch (str) {
+
+                    case 'AC':
+                        temp = 0;
+                        strOper = 0;
+                        valueM = 0;
+                        document.getElementById("output").value = '0';
+                        break;
+
+                }
+
+            }
+        </script>
+</body>
+
+</html>
